@@ -1,17 +1,26 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+import useURLLoader from './hooks/useURLLoader'
+interface DogResult {
+  message: string
+  status: string
+}
+interface TodoResult {
+  title: string
+}
+//jsonplaceholder.typicode.com/todos/1
+const { result, loading } = useURLLoader<DogResult>(
+  'https://dog.ceo/api/breeds/image/random'
+)
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
   <HelloWorld msg="Vite + Vue" />
+  <h2 v-if="loading">Loading...</h2>
+  <!-- 
+    if: loading 已经结束 && result 存在（拿到api返回结果）
+   -->
+  <img v-if="!loading && result" :src="result.message" alt="" />
 </template>
 
 <style scoped>

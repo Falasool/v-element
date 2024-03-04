@@ -3,8 +3,10 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-//   直接用流传的公认规则
-  extends: ['standard-with-typescript', 'plugin:vue/vue3-essential'],
+  //   直接用流传的公认规则
+  // extends: ['standard-with-typescript', 'plugin:vue/vue3-essential'],
+  extends: ['plugin:vue/vue3-essential', '@vue/eslint-config-typescript'],
+
   overrides: [
     {
       env: {
