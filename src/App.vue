@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 import useURLLoader from './hooks/useURLLoader'
-interface DogResult {
-  message: string
-  status: string
+interface IPerson {
+  name: string
+  age: number
 }
-interface TodoResult {
-  title: string
-}
+
+/*
+ * withDefaults接受两个参数：
+ * withDefaults(defineProps(), default)
+ */
+const props = withDefaults(defineProps<{ user?: IPerson }>(), {
+  user: () => ({ name: 'zZzzzZZ', age: 30 }),
+})
+
 //jsonplaceholder.typicode.com/todos/1
 const { result, loading } = useURLLoader<DogResult>(
   'https://dog.ceo/api/breeds/image/random'

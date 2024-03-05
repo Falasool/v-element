@@ -9,8 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
     "axios": "^1.6.7",
-    "vue": "^3.4.19"
+    "vue": "^3.4.21"
   },
   "devDependencies": {
     "@nabla/vite-plugin-eslint": "github:nabla/vite-plugin-eslint",
