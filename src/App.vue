@@ -1,32 +1,16 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
-import useURLLoader from './hooks/useURLLoader'
-interface IPerson {
-  name: string
-  age: number
-}
 
 /*
  * withDefaults接受两个参数：
  * withDefaults(defineProps(), default)
  */
-const props = withDefaults(defineProps<{ user?: IPerson }>(), {
-  user: () => ({ name: 'zZzzzZZ', age: 30 }),
-})
 
 //jsonplaceholder.typicode.com/todos/1
-const { result, loading } = useURLLoader<DogResult>(
-  'https://dog.ceo/api/breeds/image/random'
-)
 </script>
 
 <template>
-  <HelloWorld msg="Vite + Vue" />
-  <h2 v-if="loading">Loading...</h2>
-  <!-- 
-    if: loading 已经结束 && result 存在（拿到api返回结果）
-   -->
-  <img v-if="!loading && result" :src="result.message" alt="" />
+  <HelloWorld></HelloWorld>
 </template>
 
 <style scoped>
@@ -43,3 +27,4 @@ const { result, loading } = useURLLoader<DogResult>(
   filter: drop-shadow(0 0 2em #42b883aa);
 }
 </style>
+./hooks/useMousePosition
