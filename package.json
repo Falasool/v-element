@@ -11,6 +11,7 @@
   "dependencies": {
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "axios": "^1.6.7",
+    "postcss-color-mix": "^1.1.0",
     "vue": "^3.4.21"
   },
   "devDependencies": {
@@ -23,7 +24,13 @@
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.22.0",
+    "postcss": "^8.4.35",
+    "postcss-each": "^1.1.0",
+    "postcss-each-variables": "^0.3.0",
+    "postcss-for": "^2.1.1",
+    "postcss-nested": "^6.0.1",
     "typescript": "^5.3.3",
+    "unplugin-vue-macros": "^2.7.10",
     "vite": "^5.1.4",
     "vue-tsc": "^1.8.27"
   }

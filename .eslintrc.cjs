@@ -26,5 +26,7 @@ module.exports = {
   // 添加eslint的规则，在文档里找
   rules: {
     // semi: 2,
+    // 允许组件名是single-word
+    'vue-multi-word-component-names': 0,
   },
 }
