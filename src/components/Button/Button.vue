@@ -16,6 +16,7 @@ export default defineComponent({
 
 <script setup lang="ts">
 import type { ButtonProps } from './types'
+import Icon from '../Icons/Icons.vue'
 import { ref } from 'vue'
 /*
  * withDefaults作用：NativeType默认值为button
@@ -60,11 +61,14 @@ defineExpose({
       'is-round': round,
       'is-circle': circle,
       'is-disabled': disabled,
+      'is-loading': loading,
     }"
-    :disabled="disabled"
+    :disabled="disabled || loading"
     :autofocus="autofocus"
     :type="nativeType"
   >
+    <Icon icon="spinner" spin v-if="loading"></Icon>
+    <Icon :icon="icon" v-if="icon"></Icon>
     <span>
       <slot></slot>
     </span>
