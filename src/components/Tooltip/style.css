@@ -1,4 +1,80 @@
 .Zz-tooltip {
+  --Zz-popover-bg-color: var(--Zz-bg-color-overlay);
+  --Zz-popover-font-size: var(--Zz-font-size-base);
+  --Zz-popover-border-color: var(--Zz-border-color);
+  --Zz-popover-padding: 12px;
+  --Zz-popover-border-radius: 4px;
+  display: inline-block;
+}
+
+.Zz-tooltip {
+  .Zz-tooltip__popper {
+    background: var(--Zz-popover-bg-color);
+    border-radius: var(--Zz-popover-border-radius);
+    border: 1px solid var(--Zz-popover-border-color);
+    padding: var(--Zz-popover-padding);
+    color: var(--Zz-text-color-regular);
+    line-height: 1.4;
+    text-align: justify;
+    font-size: var(--Zz-popover-font-size);
+    box-shadow: var(--Zz-box-shadow-light);
+    word-break: break-all;
+    box-sizing: border-box;
+    z-index: 1000;
+    /* 伪类：popper的箭头 */
+    /* squart -> rotate -> offset */
+    #arrow,
+    #arrow::before {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      box-sizing: border-box;
+      background: var(--Zz-popover-bg-color);
+    }
+    #arrow {
+      visibility: hidden;
+    }
+    #arrow::before {
+      visibility: visible;
+      content: '';
+      transform: rotate(45deg);
+    }
+    /* ^= 以top开头的所有 */
+    /* 所有具有属性 data-popper-placement 值以 'top' 开头的元素的直接子元素，
+    且这些子元素的ID必须是 arrow。 */
+    &[data-popper-placement^='top'] > #arrow {
+      bottom: -5px;
+    }
+
+    &[data-popper-placement^='bottom'] > #arrow {
+      top: -5px;
+    }
+
+    &[data-popper-placement^='left'] > #arrow {
+      right: -5px;
+    }
+
+    &[data-popper-placement^='right'] > #arrow {
+      left: -5px;
+    }
+    &[data-popper-placement^='top'] > #arrow::before {
+      border-right: 1px solid var(--Zz-popover-border-color);
+      border-bottom: 1px solid var(--Zz-popover-border-color);
+    }
+    &[data-popper-placement^='bottom'] > #arrow::before {
+      border-left: 1px solid var(--Zz-popover-border-color);
+      border-top: 1px solid var(--Zz-popover-border-color);
+    }
+    &[data-popper-placement^='left'] > #arrow::before {
+      border-right: 1px solid var(--Zz-popover-border-color);
+      border-top: 1px solid var(--Zz-popover-border-color);
+    }
+    &[data-popper-placement^='right'] > #arrow::before {
+      border-left: 1px solid var(--Zz-popover-border-color);
+      border-bottom: 1px solid var(--Zz-popover-border-color);
+    }
+  }
+
   .fade-enter-active,
   .fade-leave-active {
     transition: opacity var(--Zz-transition-duration);

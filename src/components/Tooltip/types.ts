@@ -7,6 +7,8 @@ export interface TooltipProps {
   placement?: Placement
   popperOptions?: Partial<Options>
   transition?: string
+  openDelay?: number
+  closeDelay?: number
 }
 export interface TooltipEmits {
   (e: 'visible-change', value: boolean): void

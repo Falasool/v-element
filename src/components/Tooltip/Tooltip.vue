@@ -8,6 +8,7 @@
 import { TooltipProps, TooltipEmits, TooltipInstance } from './types'
 import { ref, watch, reactive, onUnmounted, computed } from 'vue'
 import { createPopper, Instance } from '@popperjs/core'
+import { debounce } from 'lodash-es'
 import useClickOutside from '../../hooks/useClickOutside'
 defineOptions({
   name: 'ZzTooltip',
@@ -16,6 +17,8 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'bottom',
   trigger: 'hover',
   transition: 'fade',
+  openDelay: 0,
+  closeDelay: 0,
 })
 
 const emits = defineEmits<TooltipEmits>()
@@ -38,8 +41,13 @@ const popperOptions = computed(() => {
 })
 
 const togglePopper = () => {
-  isOpen.value = !isOpen.value
-  emits('visible-change', isOpen.value)
+  // isOpen.value = !isOpen.value
+  // emits('visible-change', isOpen.value)
+  if (isOpen.value) {
+    closeFinal()
+  } else {
+    openFinal()
+  }
 }
 const open = () => {
   isOpen.value = true
@@ -49,9 +57,19 @@ const close = () => {
   isOpen.value = false
   emits('visible-change', false)
 }
+const openDebounce = debounce(open, props.openDelay)
+const closeDebounce = debounce(close, props.openDelay)
+const openFinal = () => {
+  closeDebounce.cancel()
+  openDebounce()
+}
+const closeFinal = () => {
+  closeDebounce.cancel()
+  closeDebounce()
+}
 useClickOutside(popperContainerNode, () => {
   if (props.trigger === 'click' && isOpen && !props.manual) {
-    close()
+    closeDebounce()
   }
 })
 const attachEvents = () => {
@@ -117,8 +135,8 @@ onUnmounted(() => {
   popperInstance?.destroy()
 })
 defineExpose<TooltipInstance>({
-  show: open,
-  hide: close,
+  show: openDebounce,
+  hide: closeDebounce,
 })
 </script>
 <!-- 
@@ -134,6 +152,7 @@ defineExpose<TooltipInstance>({
     <transition :name="transition">
       <div class="Zz-tooltip__popper" ref="popperNode" v-if="isOpen">
         <slot name="content">{{ content }}</slot>
+        <div id="arrow" data-popper-arrow></div>
       </div>
     </transition>
   </div>

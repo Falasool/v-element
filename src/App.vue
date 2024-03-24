@@ -6,7 +6,8 @@ import { onMounted, ref } from 'vue'
 import Collapse from './components/Collapse/Collapse.vue'
 import Item from './components/Collapse/CollapseItem.vue'
 import Icon from './components/Icons/Icons.vue'
-import Tooltip from './components/Tooltip/Tooltip.vue'
+import Dropdown from './components/Dropdown/Dropdown.vue'
+import { MenuOption } from './components/Dropdown/types'
 
 const buttonRef = ref<ButtonInstance | null>(null)
 // 默认name=a的item展开
@@ -16,17 +17,23 @@ onMounted(() => {
     console.log('buttonRef', buttonRef.value?.ref)
   }
 })
+const options: MenuOption[] = [
+  { key: 1, label: 'item1' },
+  { key: 2, label: 'item2', disabled: true },
+  { key: 3, label: 'item3', divided: true },
+  { key: 4, label: 'item4' },
+]
 </script>
 
 <template>
-  <Tooltip trigger="click" manual>
+  <Dropdown placement="right" trigger="click" :menu-options="options">
     <img src="./assets/vue.svg" width="125px" height="125px" />
     <template #content>
       <h1>
         <p>Hello this is Tooltip component!</p>
       </h1>
     </template>
-  </Tooltip>
+  </Dropdown>
 
   <Icon icon="arrow-up" size="xl" type="primary"></Icon>
   <Icon icon="arrow-up" size="xl" type="warning"></Icon>
