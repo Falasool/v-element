@@ -8,11 +8,24 @@ import Item from './components/Collapse/CollapseItem.vue'
 import Icon from './components/Icons/Icons.vue'
 import Dropdown from './components/Dropdown/Dropdown.vue'
 import { MenuOption } from './components/Dropdown/types'
+import type { TooltipInstance } from './components/Tooltip/types'
+import Message from './components/Message/Message.vue'
+
+import { createMessage } from './components/Message/method'
 
 const buttonRef = ref<ButtonInstance | null>(null)
+const tooltipRef = ref<TooltipInstance | null>(null)
+
 // 默认name=a的item展开
 const openedValue = ref(['a'])
 onMounted(() => {
+  // 函数式挂载组件，就像createApp()
+  createMessage({
+    message: 'Hello this is Message use render()',
+    showClose: true,
+    type: 'success',
+    onDestroy: () => {},
+  })
   if (buttonRef.value) {
     console.log('buttonRef', buttonRef.value?.ref)
   }
@@ -26,7 +39,14 @@ const options: MenuOption[] = [
 </script>
 
 <template>
-  <Dropdown placement="right" trigger="click" :menu-options="options">
+  <Message message="Hello this is Message!" showClose type="info"></Message>
+  <Dropdown
+    placement="bottom"
+    trigger="click"
+    :menu-options="options"
+    manual
+    ref="tooltipRef"
+  >
     <img src="./assets/vue.svg" width="125px" height="125px" />
     <template #content>
       <h1>

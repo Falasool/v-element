@@ -13,12 +13,15 @@ import {
   MenuOption,
 } from './types'
 import { TooltipInstance } from '../Tooltip/types'
+import RenderVnode from '../../common/RenderVnode'
 
 defineOptions({
   name: 'YaDropdown',
 })
 
-const props = defineProps<DropdownProps>()
+const props = withDefaults(defineProps<DropdownProps>(), {
+  hideAfterClick: true,
+})
 const emits = defineEmits<DropdownEmits>()
 const tooltipRef = ref() as Ref<TooltipInstance>
 const visibleChange = (e: boolean) => {
@@ -30,14 +33,16 @@ const itemClick = (e: MenuOption) => {
     return
   }
   emits('select', e)
+  if (props.hideAfterClick) {
+    tooltipRef.value.hide()
+  }
 }
-// defineExpose<DropdownInstance>({
-//   show: tooltipRef.value.show,
-//   hide: tooltipRef.value.hide,
-// })
+
 defineExpose<DropdownInstance>({
+  // show: tooltipRef.value.show,
+  // hide: tooltipRef.value.hide,
   show: () => tooltipRef.value?.show(),
-  hide: () => tooltipRef.value?.hide()
+  hide: () => tooltipRef.value?.hide(),
 })
 </script>
 <!-- 
@@ -80,9 +85,8 @@ defineExpose<DropdownInstance>({
               :id="`dropdown-item-${item.key}`"
               @click="itemClick(item)"
             >
-              {{ item.label }}
-            </li></template
-          >
+              <RenderVnode vNode! :vNode="item.label"></RenderVnode></li
+          ></template>
         </ul>
       </template>
     </Tooltip>
@@ -90,3 +94,4 @@ defineExpose<DropdownInstance>({
 </template>
 
 <style scoped></style>
+../../common/RenderVnode
