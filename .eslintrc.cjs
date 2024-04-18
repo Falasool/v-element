@@ -1,32 +1,20 @@
-module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-  },
-  //   直接用流传的公认规则
-  // extends: ['standard-with-typescript', 'plugin:vue/vue3-essential'],
-  extends: ['plugin:vue/vue3-essential', '@vue/eslint-config-typescript'],
+/* eslint-env node */
+require('@rushstack/eslint-patch/modern-module-resolution')
 
-  overrides: [
-    {
-      env: {
-        node: true,
-      },
-      files: ['.eslintrc.{js,cjs}'],
-      parserOptions: {
-        sourceType: 'script',
-      },
-    },
+module.exports = {
+  root: true,
+  'extends': [
+    'plugin:vue/vue3-essential',
+    'eslint:recommended',
+    '@vue/eslint-config-typescript'
   ],
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    ecmaVersion: 'latest'
   },
-  plugins: ['vue'],
-  // 添加eslint的规则，在文档里找
   rules: {
-    // semi: 2,
-    // 允许组件名是single-word
-    'vue-multi-word-component-names': 0,
+    'vue/multi-word-component-names': 0
   },
+  globals: {
+    "defineOptions": "readonly"
+  }
 }

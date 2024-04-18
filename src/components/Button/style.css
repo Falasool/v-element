@@ -1,21 +1,21 @@
-.Zz-button {
-  --Zz-button-font-weight: var(--Zz-font-weight-primary);
-  --Zz-button-border-color: var(--Zz-border-color);
-  --Zz-button-bg-color: var(--Zz-fill-color-blank);
-  --Zz-button-text-color: var(--Zz-text-color-regular);
-  --Zz-button-disabled-text-color: var(--Zz-disabled-text-color);
-  --Zz-button-disabled-bg-color: var(--Zz-fill-color-blank);
-  --Zz-button-disabled-border-color: var(--Zz-border-color-light);
-  --Zz-button-hover-text-color: var(--Zz-color-primary);
-  --Zz-button-hover-bg-color: var(--Zz-color-primary-light-9);
-  --Zz-button-hover-border-color: var(--Zz-color-primary-light-7);
-  --Zz-button-active-text-color: var(--Zz-button-hover-text-color);
-  --Zz-button-active-border-color: var(--Zz-color-primary);
-  --Zz-button-active-bg-color: var(--Zz-button-hover-bg-color);
-  --Zz-button-outline-color: var(--Zz-color-primary-light-5);
-  --Zz-button-active-color: var(--Zz-text-color-primary);
+.vk-button {
+  --vk-button-font-weight: var(--vk-font-weight-primary);
+  --vk-button-border-color: var(--vk-border-color);
+  --vk-button-bg-color: var(--vk-fill-color-blank);
+  --vk-button-text-color: var(--vk-text-color-regular);
+  --vk-button-disabled-text-color: var(--vk-disabled-text-color);
+  --vk-button-disabled-bg-color: var(--vk-fill-color-blank);
+  --vk-button-disabled-border-color: var(--vk-border-color-light);
+  --vk-button-hover-text-color: var(--vk-color-primary);
+  --vk-button-hover-bg-color: var(--vk-color-primary-light-9);
+  --vk-button-hover-border-color: var(--vk-color-primary-light-7);
+  --vk-button-active-text-color: var(--vk-button-hover-text-color);
+  --vk-button-active-border-color: var(--vk-color-primary);
+  --vk-button-active-bg-color: var(--vk-button-hover-bg-color);
+  --vk-button-outline-color: var(--vk-color-primary-light-5);
+  --vk-button-active-color: var(--vk-text-color-primary);
 }
-.Zz-button {
+.vk-button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -23,45 +23,45 @@
   height: 32px;
   white-space: nowrap;
   cursor: pointer;
-  color: var(--Zz-button-text-color);
+  color: var(--vk-button-text-color);
   text-align: center;
   box-sizing: border-box;
   outline: none;
-  transition: 0.1s;
-  font-weight: var(--Zz-button-font-weight);
+  transition: .1s;
+  font-weight: var(--vk-button-font-weight);
   user-select: none;
   vertical-align: middle;
   -webkit-appearance: none;
-  background-color: var(--Zz-button-bg-color);
-  border: var(--Zz-border);
-  border-color: var(--Zz-button-border-color);
+  background-color: var(--vk-button-bg-color);
+  border: var(--vk-border);
+  border-color: var(--vk-button-border-color);
   padding: 8px 15px;
-  font-size: var(--Zz-font-size-base);
-  border-radius: var(--Zz-border-radius-base);
+  font-size: var(--vk-font-size-base);
+  border-radius: var(--vk-border-radius-base);
   & + & {
     margin-left: 12px;
   }
   &:hover,
   &:focus {
-    color: var(--Zz-button-hover-text-color);
-    border-color: var(--Zz-button-hover-border-color);
-    background-color: var(--Zz-button-hover-bg-color);
-    outline: none;
+    color: var(--vk-button-hover-text-color);
+    border-color: var(--vk-button-hover-border-color);
+    background-color: var(--vk-button-hover-bg-color);
+    outline: none;    
   }
   &:active {
-    color: var(--Zz-button-active-text-color);
-    border-color: var(--Zz-button-active-border-color);
-    background-color: var(--Zz-button-active-bg-color);
+    color: var(--vk-button-active-text-color);
+    border-color: var(--vk-button-active-border-color);
+    background-color: var(--vk-button-active-bg-color);
     outline: none;
   }
   &.is-plain {
-    --Zz-button-hover-text-color: var(--Zz-color-primary);
-    --Zz-button-hover-bg-color: var(--Zz-fill-color-blank);
-    --Zz-button-hover-border-color: var(--Zz-color-primary);
+    --vk-button-hover-text-color: var(--vk-color-primary);
+    --vk-button-hover-bg-color: var(--vk-fill-color-blank);
+    --vk-button-hover-border-color: var(--vk-color-primary);    
   }
   /*round*/
   &.is-round {
-    border-radius: var(--Zz-border-radius-round);
+    border-radius: var(--vk-border-radius-round);
   }
   /*circle*/
   &.is-circle {
@@ -69,59 +69,57 @@
     padding: 8px;
   }
   /*disabled*/
-  &.is-disabled,
-  &.is-disabled:hover,
-  &.is-disabled:focus,
-  &[disabled],
-  &[disabled]:hover,
-  &[disabled]:focus {
-    color: var(--Zz-button-disabled-text-color);
+  &.is-disabled, &.is-disabled:hover, &.is-disabled:focus, 
+  &[disabled], &[disabled]:hover, &[disabled]:focus 
+  {
+    color: var(--vk-button-disabled-text-color);
     cursor: not-allowed;
     background-image: none;
-    background-color: var(--Zz-button-disabled-bg-color);
-    border-color: var(--Zz-button-disabled-border-color);
+    background-color: var(--vk-button-disabled-bg-color);
+    border-color: var(--vk-button-disabled-border-color);
   }
-  [class*='Zz-icon'] + span {
+  [class*=vk-icon] + span {
     margin-left: 6px;
   }
 }
-@each $val in primary, success, warning, info, danger {
-  .Zz-button--$(val) {
-    --Zz-button-text-color: var(--Zz-color-white);
-    --Zz-button-bg-color: var(--Zz-color-$(val));
-    --Zz-button-border-color: var(--Zz-color-$(val));
-    --Zz-button-outline-color: var(--Zz-color-$(val)-light-5);
-    --Zz-button-active-color: var(--Zz-color-$(val)-dark-2);
-    --Zz-button-hover-text-color: var(--Zz-color-white);
-    --Zz-button-hover-bg-color: var(--Zz-color-$(val)-light-3);
-    --Zz-button-hover-border-color: var(--Zz-color-$(val)-light-3);
-    --Zz-button-active-bg-color: var(--Zz-color-$(val)-dark-2);
-    --Zz-button-active-border-color: var(--Zz-color-$(val)-dark-2);
-    --Zz-button-disabled-text-color: var(--Zz-color-white);
-    --Zz-button-disabled-bg-color: var(--Zz-color-$(val)-light-5);
-    --Zz-button-disabled-border-color: var(--Zz-color-$(val)-light-5);
+@each $val in primary,success,warning,info,danger {
+  .vk-button--$(val) {
+    --vk-button-text-color: var(--vk-color-white);
+    --vk-button-bg-color: var(--vk-color-$(val));
+    --vk-button-border-color: var(--vk-color-$(val));
+    --vk-button-outline-color: var(--vk-color-$(val)-light-5);
+    --vk-button-active-color: var(--vk-color-$(val)-dark-2);
+    --vk-button-hover-text-color: var(--vk-color-white);
+    --vk-button-hover-bg-color: var(--vk-color-$(val)-light-3);
+    --vk-button-hover-border-color: var(--vk-color-$(val)-light-3);
+    --vk-button-active-bg-color: var(--vk-color-$(val)-dark-2);
+    --vk-button-active-border-color: var(--vk-color-$(val)-dark-2);
+    --vk-button-disabled-text-color: var(--vk-color-white);
+    --vk-button-disabled-bg-color: var(--vk-color-$(val)-light-5);
+    --vk-button-disabled-border-color: var(--vk-color-$(val)-light-5);
   }
-  .Zz-button--$(val).is-plain {
-    --Zz-button-text-color: var(--Zz-color-$(val));
-    --Zz-button-bg-color: var(--Zz-color-$(val)-light-9);
-    --Zz-button-border-color: var(--Zz-color-$(val)-light-5);
-    --Zz-button-hover-text-color: var(--Zz-color-white);
-    --Zz-button-hover-bg-color: var(--Zz-color-$(val));
-    --Zz-button-hover-border-color: var(--Zz-color-$(val));
-    --Zz-button-active-text-color: var(--Zz-color-white);
+  .vk-button--$(val).is-plain {
+    --vk-button-text-color: var(--vk-color-$(val));
+    --vk-button-bg-color: var(--vk-color-$(val)-light-9);
+    --vk-button-border-color: var(--vk-color-$(val)-light-5);
+    --vk-button-hover-text-color: var(--vk-color-white);
+    --vk-button-hover-bg-color: var(--vk-color-$(val));
+    --vk-button-hover-border-color: var(--vk-color-$(val));
+    --vk-button-active-text-color: var(--vk-color-white);
   }
 }
-.Zz-button--large {
-  --Zz-button-size: 40px;
-  height: var(--Zz-button-size);
+.vk-button--large {
+  --vk-button-size: 40px;
+  height: var(--vk-button-size);
   padding: 12px 19px;
-  font-size: var(--Zz-font-size-base);
-  border-radius: var(--Zz-border-radius-base);
+  font-size: var(--vk-font-size-base);
+  border-radius: var(--vk-border-radius-base);
 }
-.Zz-button--small {
-  --Zz-button-size: 24px;
-  height: var(--Zz-button-size);
+.vk-button--small {
+  --vk-button-size: 24px;
+  height: var(--vk-button-size);
   padding: 5px 11px;
   font-size: 12px;
-  border-radius: calc(var(--Zz-border-radius-base) - 1px);
+  border-radius: calc(var(--vk-border-radius-base) - 1px);
 }
+

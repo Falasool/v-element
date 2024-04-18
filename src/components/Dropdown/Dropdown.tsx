@@ -1,27 +1,27 @@
-import { Fragment, computed, defineComponent } from 'vue'
-import { PropType } from 'vue'
-import { Placement } from '@floating-ui/core'
-import { Options } from '@popperjs/core'
-import { MenuOption } from './types'
+import { computed, defineComponent, Fragment, ref } from 'vue'
+import type { PropType } from 'vue'
+import type { Placement, Options } from '@popperjs/core'
+import type { MenuOption } from './types'
 import Tooltip from '../Tooltip/Tooltip.vue'
-defineComponent({
-  name: 'YaDropdown',
+import type { TooltipInstance } from '../Tooltip/types'
+export default defineComponent({
+  name: 'VkDropdown',
   props: {
     placement: {
       type: String as PropType<Placement>,
-      default: 'bottom',
+      default: 'bottom'
     },
     trigger: {
       type: String as PropType<'hover' | 'click'>,
-      default: 'hover',
+      default: 'hover'
     },
     transition: {
       type: String,
-      default: 'fade',
+      default: 'fade'
     },
     openDelay: {
       type: Number,
-      default: 0,
+      default: 0
     },
     closeDelay: {
       type: Number,
@@ -32,48 +32,75 @@ defineComponent({
     },
     menuOptions: {
       type: Array as PropType<MenuOption[]>,
-      required: true,
+      required: true
     },
     hideAfterClick: {
       type: Boolean,
-      default: true,
+      default: true
     },
     manual: {
-      type: Boolean,
-    },
+      type: Boolean
+    }
   },
-  setup(props, { slots }) {
+  emits: ['visible-change', 'select'],
+  setup(props, { slots, emit, expose }) {
+    const tooltipRef = ref<TooltipInstance | null>(null)
+    const itemClick = (e: MenuOption) => {
+      if (e.disabled) {
+        return
+      }
+      emit('select', e)
+      if (props.hideAfterClick) {
+        tooltipRef.value?.hide()
+      }
+    }
+    const visibleChange = (e:boolean) => {
+      emit('visible-change', e)
+    }
     const options = computed(() => {
-      return props.menuOptions.map((item) => {
+      return props.menuOptions.map(item => {
         return (
           <Fragment key={item.key}>
-            {item.divided ? (
-              <i role="separator" class="divide-placeholder"></i>
-            ) : (
-              ''
-            )}
-            <li class="Ya-dropdown__item" id={`dropdown-item-${item.key}`}>
-              {item.label}
+            { item.divided ? <li role="separator" class="divided-placeholder"/> : '' }
+            <li 
+              class={{'vk-dropdown__item': true, 'is-disabled': item.disabled, 'is-divided': item.divided }}
+              id={`dropdown-item-${item.key}`}
+              onClick={() => itemClick(item)}
+            >
+              { item.label }
             </li>
           </Fragment>
         )
       })
     })
+    expose({
+      show: () => tooltipRef.value?.show(),
+      hide: () => tooltipRef.value?.hide()
+    })
     return () => (
-      <div class="Ya-dropdown">
-        <Tooltip
-          trigger={props.trigger}
+      <div
+        class="vk-dropdown"
+      >
+        <Tooltip 
+          trigger={props.trigger} 
           placement={props.placement}
           popperOptions={props.popperOptions}
           openDelay={props.openDelay}
           closeDelay={props.closeDelay}
+          manual={props.manual}
+          ref={tooltipRef}
+          onVisibleChange={visibleChange}
         >
           {{
             default: () => slots.default && slots.default(),
-            content: () => <ul class="Ya-dropdown__menu">{options.value}</ul>,
+            content: () => (
+              <ul class="vk-dropdown__menu">
+                { options.value }
+              </ul>
+            )
           }}
         </Tooltip>
       </div>
     )
-  },
+  }
 })

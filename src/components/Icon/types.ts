@@ -1,12 +1,10 @@
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
-// 无法引入外部...，所以从依赖里把需要的interface复制了过来
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 export interface IconProps {
   border?: boolean
   fixedWidth?: boolean
   flip?: 'horizontal' | 'vertical' | 'both'
   icon: object | Array<string> | string | IconDefinition
   mask?: object | Array<string> | string
-  maskId?: object | Array<string> | string
   listItem?: boolean
   pull?: 'right' | 'left'
   pulse?: boolean
@@ -17,7 +15,6 @@ export interface IconProps {
   transform?: object | string
   symbol?: boolean | string
   title?: string
-  titleId?: string
   inverse?: boolean
   bounce?: boolean
   shake?: boolean
@@ -26,6 +23,6 @@ export interface IconProps {
   beatFade?: boolean
   spinPulse?: boolean
   spinReverse?: boolean
-  type?: 'primary'|'success'|'warning'|'danger'|'info'
-  color?:string
+  type?: 'primary'| 'success'| 'warning'| 'danger'| 'info'
+  color?: string
 }

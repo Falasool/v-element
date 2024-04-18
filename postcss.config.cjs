@@ -5,8 +5,11 @@ module.exports = {
     require('postcss-nested'),
     require('postcss-each')({
       plugins: {
-        beforeEach: [require('postcss-for'), require('postcss-color-mix')],
-      },
+        beforeEach: [
+          require('postcss-for'),
+          require('postcss-color-mix')
+        ]
+      }
     }),
-  ],
+  ]
 }
